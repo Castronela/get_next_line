@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dstinghe <dstinghe@student.42.fr>          +#+  +:+       +#+        */
+/*   By: david <david@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 21:17:36 by dstinghe          #+#    #+#             */
-/*   Updated: 2024/04/23 02:25:53 by dstinghe         ###   ########.fr       */
+/*   Updated: 2025/02/25 00:13:53 by david            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,19 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-int		str_len(char *str);
-void	str_cpy(char *dst, char *src, int size);
-char	*realloc_mem(char *ptr, int new_size);
-int		process_line(char **buff, char **line, int *bytes_read);
-int		read_file(int fd, char **buff, int *bytes_read);
-char	*get_next_line(int fd);
+# define MAX_FDS 4096
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
 
-# define ERROR -1
+/* ========================= Function declarations ========================= */
+
+char	*get_next_line(int fd);
+
+/* --------------------------------- Utils --------------------------------- */
+
+int		read_file(int fd, char *buffer, char *line);
+int		process_line(char *buffer, char **line, size_t end_index);
 
 #endif
